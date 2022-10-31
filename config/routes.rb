@@ -18,6 +18,10 @@ Rails.application.routes.draw do
   get '/search', to: 'searches#search'
   resources :messages, only: [:create]
   resources :rooms, only: [:create,:show]
-  resources :groups, except: [:destroy]
   resources :group_users, only: [:create, :destroy]
+  resources :groups, except:[:destroy] do
+    get "join" =>"groups#join"
+    get "new/mail" => "groups#new_mail"
+    get "send/mail" => "groups#send_mail"
+  end
 end

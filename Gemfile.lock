@@ -86,6 +86,11 @@ GEM
       responders
       warden (~> 1.2.3)
     diff-lcs (1.5.0)
+    digest (3.1.0)
+    dotenv (2.8.1)
+    dotenv-rails (2.8.1)
+      dotenv (= 2.8.1)
+      railties (>= 3.2)
     erubi (1.11.0)
     factory_bot (6.2.1)
       activesupport (>= 5.0.0)
@@ -104,6 +109,7 @@ GEM
       ruby-vips (>= 2.0.17, < 3)
     impressionist (2.0.0)
       nokogiri (~> 1)
+    io-wait (0.2.1)
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
@@ -123,6 +129,13 @@ GEM
     mini_portile2 (2.8.0)
     minitest (5.16.3)
     msgpack (1.6.0)
+    net-protocol (0.1.2)
+      io-wait
+      timeout
+    net-smtp (0.3.1)
+      digest
+      net-protocol
+      timeout
     nio4r (2.5.8)
     nokogiri (1.13.9)
       mini_portile2 (~> 2.8.0)
@@ -215,6 +228,7 @@ GEM
       mini_portile2 (~> 2.8.0)
     thor (1.2.1)
     tilt (2.0.11)
+    timeout (0.2.0)
     tzinfo (2.0.5)
       concurrent-ruby (~> 1.0)
     warden (1.2.9)
@@ -244,12 +258,14 @@ DEPENDENCIES
   byebug
   capybara (>= 2.15)
   devise
+  dotenv-rails
   factory_bot_rails
   faker
   image_processing (~> 1.2)
   impressionist
   jbuilder (~> 2.7)
   listen (~> 3.3)
+  net-smtp
   puma (~> 5.0)
   rack-mini-profiler (~> 2.0)
   rails (~> 6.1.4)
