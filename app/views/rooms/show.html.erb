@@ -1,0 +1,14 @@
+<h1><%= @message_user.name %>さんとのチャット</h1>
+<table class="table table-borderless">
+  <% @messages.each do |message| %>
+  <tr>
+    <td class="text-center"><%= message.content %></td>
+  </tr>
+  <% end %>
+</table>
+
+<%= form_with model: @message do |f| %>
+  <%= f.text_field :content, size: 70, class:"form-text-field" %>
+  <%= f.hidden_field :room_id, value: @room.id %>
+  <%= f.submit "投稿", class: 'form-submit'%>
+<% end %>
