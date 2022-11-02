@@ -17,7 +17,7 @@
           </td>
           <td><%= link_to @book.title, @book %></td>
           <td><%= @book.body %></td>
-          <td id=<%= "favorite-" + @book.id.to_s %> >
+          <td id=<%= "favorite-" + @book.id.to_s %>>
             <%= render "favorites/btn", book: @book %>
           </td>
           <td class="book-comments-counter">
@@ -26,6 +26,19 @@
           <td>
             閲覧数：<%= @book.impressionist_count(:filter=>:all) %>
           </td>
+          <td>
+            <div id="post_raty" data-score="<%= @book.star %>"></div>
+            <script>
+            var elem = document.getElementById('post_raty');
+            var opt = {  
+                starOn: "<%= asset_path('star-on.png') %>",
+                starOff: "<%= asset_path('star-off.png') %>",
+                starHalf: "<%= asset_path('star-half.png') %>",
+                readOnly: true,
+              };
+              raty(elem,opt);
+            </script>
+          </td>
           <% if @book.user == current_user %>
             <td><%= link_to 'Edit', edit_book_path(@book), class: "btn btn-sm btn-success edit_book_#{@book.id}" %></td>
             <td><%= link_to 'Destroy', @book, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger destroy_book_#{@book.id}" %></td>
@@ -33,6 +46,7 @@
         </tr>
       </table>
 
+      
       <div class="book-comments-index">
         <%= render "book_comments/index", book: @book %>
       </div>

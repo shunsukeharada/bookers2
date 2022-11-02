@@ -7,7 +7,23 @@
     <%= f.label :body %>
     <%= f.text_area :body, class: 'form-control book_body' %>
   </div>
+  <div class="form-group" id="review_star">
+    <%= f.label :star,'Rate' %>
+    <%= f.hidden_field :star %>
+  </div>
   <div class="form-group">
     <%= f.submit class: 'btn btn-success' %>
   </div>
 <% end %>
+
+<script>
+  var elem = document.getElementById('review_star');
+  var opt = {  
+      starOn: "<%= asset_path('star-on.png') %>",
+      starOff: "<%= asset_path('star-off.png') %>",
+      starHalf: "<%= asset_path('star-half.png') %>",
+      scoreName: 'book[star]',
+      half: false,
+    };
+  raty(elem,opt);
+</script>

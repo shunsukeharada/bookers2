@@ -3,7 +3,36 @@
     <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
   		<h1>Editing Book</h1>
     	<%= render 'layouts/errors', obj: @book %>
-  		<%= render 'form', book: @book %>
+  		<%= form_with model:@book,local:true do |f| %>
+          <div class="form-group">
+            <%= f.label :title %>
+            <%= f.text_field :title, class: 'form-control book_title' %>
+          </div>
+          <div class="form-group">
+            <%= f.label :body %>
+            <%= f.text_area :body, class: 'form-control book_body' %>
+          </div>
+          <div class="form-group" id="review_star" data-score="<%= @book.star %>">
+            <%= f.label :star,'Rate' %>
+            <%= f.hidden_field :star %>
+          </div>
+          <div class="form-group">
+            <%= f.submit class: 'btn btn-success' %>
+          </div>
+        <% end %>
+        
+        <script>
+          var elem = document.getElementById('review_star');
+          var opt = {  
+              starOn: "<%= asset_path('star-on.png') %>",
+              starOff: "<%= asset_path('star-off.png') %>",
+              starHalf: "<%= asset_path('star-half.png') %>",
+              scoreName: 'book[star]',
+              readOnly: true,
+              half: false,
+            };
+          raty(elem,opt);
+        </script>
   		<%= link_to 'Show', @book, class: "book_#{@book.id}" %> |
   		<%= link_to 'Back', books_path, class: "back" %>
   </div>

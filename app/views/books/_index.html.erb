@@ -23,6 +23,19 @@
         <td>
           閲覧数：<%= book.impressionist_count(:filter=>:all) %>
         </td>
+        <td>
+          <div id="post_raty_<%= book.id%>" data-score="<%= book.star %>"></div>
+          <script>
+          var elem = document.getElementById('post_raty_<%= book.id%>');
+          var opt = {  
+              starOn: "<%= asset_path('star-on.png') %>",
+              starOff: "<%= asset_path('star-off.png') %>",
+              starHalf: "<%= asset_path('star-half.png') %>",
+              readOnly: true,
+            };
+            raty(elem,opt);
+          </script>
+        </td>
       </tr>
     <% end %>
   </tbody>
